@@ -54,9 +54,9 @@ This will output the production-ready files to the `build/` folder.
 ### Features
 
 - **User Authentication**
-  - [ ] Registration
-  - [ ] Login
-  - [ ] Protected Routes (JWT Authentication)
+  - [x] Registration
+  - [x] Login
+  - [x] Protected Routes (JWT Authentication)
 
 - **Real-Time Dashboard**
   - [ ] Live sensor data display via WebSockets
@@ -90,31 +90,51 @@ SensoSphere-Frontend/
 │   ├── index.html
 │   └── favicon.ico
 ├── src/
-│   ├── assets/           # Images, icons, and other static assets
+│   ├── assets/
+│   │   └── Fonts/
+│   │   └── Images/
 │   ├── components/       # Reusable UI components
 │   │   ├── Dashboard.js
-│   │   ├── SensorList.js
-│   │   ├── Notifications.js
-│   │   └── UserProfile.js
-│   ├── features/         # Redux features and slices
-│   │   ├── sensors/      
-│   │   │   ├── sensorSlice.js
-│   │   │   └── sensorAPI.js
-│   │   ├── notifications/
-│   │   │   ├── notificationSlice.js
-│   │   │   └── notificationAPI.js
-│   ├── hooks/            # Custom hooks
-│   ├── pages/            # Full-page components (e.g. Dashboard, Login, etc.)
-│   │   ├── DashboardPage.js
-│   │   ├── LoginPage.js
-│   │   └── ProfilePage.js
+│   │   ├── Footer.js
+│   │   ├── LiveFeed.js
+│   │   └── Navbar.js
+│   │   └── Notifications.js
+│   │   └── Post.js
+│   │   └── Profile.js
+│   │   └── SensorData.js
+│   │   └── Sidebar.js
+│   ├── pages/        
+│   │   ├── Home.js      
+│   │   └── Login.js
+│   │   └── NotFound.js
+│   │   └── Profile.js
+│   │   └── Register.js
+│   │   └── Sensors.js
+│   ├── redux/
+│   │   └── slices/
+│   │   │   └── authSlice.js
+│   │   │   └── feedSlice.js
+│   │   │   └── notificationSlice.js
+│   │   │   └── sensorSlice.js
+│   │   └── store.js
+│   ├── routes/
+│   │   ├── ProtectedRoute.js
+│   │   ├── PublicRoute.js
 │   ├── services/         # API services using Axios
-│   ├── store/            # Redux store setup
-│   ├── styles/           # CSS and Tailwind configurations
+│   │   └── authService.js
+│   │   └── feedService.js
+│   │   └── notificationService.js
+│   │   └── sensorService.js
+│   ├── utils/
+│   │   │   └── api.js
+│   │   │   └── authHelper.js
+│   │   │   └── formatDate.js
+│   │   │   └── websocket.js
+│   ├── App.css
 │   ├── App.js            # Root component
+│   └── index.css       
 │   ├── index.js          # Main entry point
 │   ├── routes.js         # App routing
-│   └── wsClient.js       # WebSocket client setup
 ├── .env                  # Environment variables
 ├── .gitignore
 └── README.md
@@ -125,19 +145,19 @@ SensoSphere-Frontend/
 ### Checklist for Project Milestones
 
 - **Setup**
-  - [ ] Project initialized with Create React App
-  - [ ] Installed all required dependencies (React, Redux Toolkit, etc.)
-  - [ ] Folder structure set up
+  - [x] Project initialized with Create React App
+  - [x] Installed all required dependencies (React, Redux Toolkit, etc.)
+  - [x] Folder structure set up
 
 - **Authentication**
-  - [ ] Implement login and registration forms
-  - [ ] Setup JWT handling for protected routes
-  - [ ] Test integration with backend
+  - [x] Implement login and registration forms
+  - [x] Setup JWT handling for protected routes
+  - [x] Test integration with backend
 
 - **State Management**
-  - [ ] Create Redux store
-  - [ ] Create slices for sensors, notifications, and user management
-  - [ ] Integrate Redux with React components
+  - [x] Create Redux store
+  - [x] Create slices for sensors, notifications, and user management
+  - [x] Integrate Redux with React components
 
 - **WebSocket Integration**
   - [ ] Setup WebSocket connection to backend
