@@ -4,7 +4,7 @@
  ***********************************************************/
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/sensor';
+const API_URL = 'http://localhost:3000/api/sensors';
 
 // Fetch all sensor data with Authorization header
 export const fetchSensorsService = async () => {
@@ -25,7 +25,13 @@ export const fetchSensorsService = async () => {
 // Update a specific sensor
 export const updateSensorService = async (sensorId, sensorData) => {
   try {
-    const response = await axios.put(`${API_URL}/${sensorId}`, sensorData);
+    const token = localStorage.getItem('token');  // Retrieve token from local storage
+    const response = await axios.put(`${API_URL}/${sensorId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Add Authorization header with Bearer token
+        },
+      }, sensorData);
     return response.data;
   } catch (error) {
     console.error('Error updating sensor:', error);

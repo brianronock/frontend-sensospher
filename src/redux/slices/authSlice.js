@@ -28,6 +28,21 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (userDat
   }
 });
 
+// Fetch user profile based on token stored in localStorage
+export const loadUserFromLocalStorage = createAsyncThunk('auth/loadUserFromLocalStorage', async (_, thunkAPI) => {
+  const token = localStorage.getItem('token');  // Retrieve token from localStorage
+  if (token) {
+    try {
+      const response = await getProfile();  // Assuming getProfile uses the token automatically
+      return response;  // Return the user data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);  // Handle any errors
+    }
+  } else {
+    return thunkAPI.rejectWithValue('No token found');  // If no token, reject
+  }
+});
+
 // Async action for fetching user profile
 export const fetchUserProfile = createAsyncThunk('auth/fetchUserProfile', async (_, thunkAPI) => {
   try {
@@ -77,7 +92,20 @@ const authSlice = createSlice({
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase(loadUserFromLocalStorage.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loadUserFromLocalStorage.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+      })
+      .addCase(loadUserFromLocalStorage.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.isAuthenticated = false;
+      })
   },
 });
 

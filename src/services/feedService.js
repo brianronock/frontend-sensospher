@@ -1,3 +1,7 @@
+/***********************************************************
+ * feedService.js
+ * Handles API requests for fetching and managing live feed.
+ ***********************************************************/
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/api/feed';

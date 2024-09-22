@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <h1>Welcome to SensoSphere</h1>
       <p>Real-time sensor data and live updates.</p>
-      <p>&copy; 2024 SensoSphere</p>
+      {/* <p>&copy; 2024 SensoSphere</p> // Replaced with footer component in main App*/}
       {/* Links to other pages */}
       <nav>
         <ul>

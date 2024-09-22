@@ -6,7 +6,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchSensorsService } from '../../services/sensorService';
 
 // Thunk to fetch sensor data
-export const fetchSensors = createAsyncThunk('sensor/fetchSensors', async (_, thunkAPI) => {
+export const fetchSensors = createAsyncThunk('sensors/fetchSensors', async (_, thunkAPI) => {
   try {
     const response = await fetchSensorsService();
     return response;

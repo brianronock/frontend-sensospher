@@ -28,7 +28,7 @@ const Dashboard = () => {
       <h1>Live Feed</h1>
       {posts.map((post) => (
         <div key={post._id}>
-          <h2>{post.content}</h2>
+          <p>{post.content}</p>
         </div>
       ))}
     </div>
