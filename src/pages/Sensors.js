@@ -1,42 +1,37 @@
-/***********************************************************
- * Sensors.js
- * Page component to display and manage sensor data.
- ***********************************************************/
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSensors } from '../redux/slices/sensorSlice';
+import React, { useState, useEffect } from 'react';
+import SensorChartSingle from '../components/SensorChart';
 
-const Sensors = () => {
-  const dispatch = useDispatch();
-  const { sensors, loading, error } = useSelector((state) => state.sensor);
+const Sensors = ({ socket }) => {
+  const [temperatureData, setTemperatureData] = useState([]);
+  const [humidityData, setHumidityData] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchSensors());  // Fetch sensor data when component mounts
-  }, [dispatch]);
+    if (socket) {
+      socket.on('sensorData', (data) => {
+        if (data.type === 'temperature') {
+          setTemperatureData((prevData) => [...prevData, { timestamp: new Date(), value: data.value }].slice(-50));
+        } else if (data.type === 'humidity') {
+          setHumidityData((prevData) => [...prevData, { timestamp: new Date(), value: data.value }].slice(-50));
+        }
+      });
+    }
 
-  if (loading) {
-    return <p>Loading sensor data...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+    return () => {
+      if (socket) {
+        socket.off('sensorData');
+      }
+    };
+  }, [socket]);
 
   return (
     <div>
-      <h1>Sensors Data</h1>
-      {sensors.length > 0 ? (
-        sensors.map((sensor) => (
-          <div key={sensor._id}>
-            <p>Sensor ID: {sensor._id}</p>
-            <p>Data: {sensor.data}</p>
-            <p>Timestamp: {sensor.timestamp}</p>
-          </div>
-        ))
-      ) : (
-        <p>No sensors data available.</p>
-      )}
+      <h1>Sensors Page</h1>
+      <div className='sensorsWrapper'>
+        <SensorChartSingle sensorData={temperatureData} label="Temperature (°C)" borderColor="rgba(75,192,192,1)" backgroundColor="rgba(75,192,192,0.2)" />
+        <SensorChartSingle sensorData={humidityData} label="Humidity (%)" borderColor="rgba(153,102,255,1)" backgroundColor="rgba(153,102,255,0.2)" />
+      </div>      
     </div>
+
   );
 };
 
