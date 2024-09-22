@@ -4,8 +4,11 @@
  ***********************************************************/
 import axios from 'axios';
 
+// const API_URL = 'http://192.168.0.16:3000/api/auth';  // Auth-related API base URL
+// const USER_API_URL = 'http://192.168.0.16:3000/api/users';  // User-related API base URL
 const API_URL = 'http://localhost:3000/api/auth';  // Auth-related API base URL
 const USER_API_URL = 'http://localhost:3000/api/users';  // User-related API base URL
+
 
 // Login user
 export const loginService = async (credentials) => {

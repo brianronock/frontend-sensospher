@@ -4,7 +4,9 @@
  ***********************************************************/
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/feed';
+// const API_URL = 'http://192.168.0.16:3000/api/feed';
+ const API_URL = 'http://localhost:3000/api/feed';
+
 
 // Fetch all posts with Authorization header
 export const fetchPostsService = async () => {

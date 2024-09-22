@@ -24,16 +24,20 @@ const Profile = () => {
 
   return (
     <div>
-      <h1>Your Profile</h1>
+    <h1>User Profile</h1>
+    <div className='profile'>
       {user ? (
         <div>
+          <h1>Profile page of {user.name}</h1>
           <p>Name: {user.name}</p>
           <p>Email: {user.email}</p>
         </div>
       ) : (
         <p>No user information available</p>
       )}
+    </div>      
     </div>
+
   );
 };
 

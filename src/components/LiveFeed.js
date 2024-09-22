@@ -43,9 +43,11 @@ const LiveFeed = () => {
         />
         <button type="submit">Post</button>
       </form>
+      <div className='live-feed'>
+
       {posts.length > 0 ? (
         posts.map((post) => (
-          <div key={post._id}>
+          <div key={post._id} className='post'>
             <p>{post.content}</p>
           </div>
         ))
@@ -53,6 +55,8 @@ const LiveFeed = () => {
         <p>No posts to display.</p>
       )}
     </div>
+    </div>
+
   );
 };
 
