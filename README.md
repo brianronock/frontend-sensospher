@@ -59,7 +59,7 @@ This will output the production-ready files to the `build/` folder.
   - [x] Protected Routes (JWT Authentication)
 
 - **Real-Time Dashboard**
-  - [ ] Live sensor data display via WebSockets
+  - [x] Live sensor data display via WebSockets
   - [ ] Sensor details and statistics
   - [ ] Notifications for alerts
 
@@ -68,11 +68,11 @@ This will output the production-ready files to the `build/` folder.
   - [ ] Task management for organizing sensor-related tasks
 
 - **User Management**
-  - [ ] User profile management
-  - [ ] Roles and permissions
+  - [x] User profile management
+  - [x] Roles and permissions
 
 - **Data Visualization**
-  - [ ] Charts for sensor readings (using Chart.js or D3.js)
+  - [x] Charts for sensor readings (using Chart.js or D3.js)
   - [ ] Historical data filtering
 
 - **Settings**

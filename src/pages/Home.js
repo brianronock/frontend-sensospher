@@ -22,7 +22,13 @@ const Home = () => {
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
           </ul>
-        </nav>        
+        </nav> 
+        <p>API documentation is available for download.</p>
+        {/* Download button */}
+        <a href="http://localhost:3000/api-docs" download>
+          <button>Download API Documentation</button>
+        </a>       
+
       </div>
 
 
