@@ -31,7 +31,7 @@ export const deletePost = createAsyncThunk('feed/deletePost', async (postId, thu
   }
 });
 
-// Thunk for editing/updating a post
+// Thunk for updating a post
 export const updatePost = createAsyncThunk('feed/updatePost', async ({ id, content }, thunkAPI) => {
   try {
     const response = await updatePostService(id, content);
@@ -41,7 +41,7 @@ export const updatePost = createAsyncThunk('feed/updatePost', async ({ id, conte
   }
 });
 
-// Thunk for liking a post
+// Like a post
 export const likePost = createAsyncThunk('feed/likePost', async (postId, thunkAPI) => {
   try {
     const response = await likePostService(postId);
@@ -93,7 +93,7 @@ const feedSlice = createSlice({
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = state.posts.filter(post => post._id !== action.payload);  // Remove deleted post
+        state.posts = state.posts.filter(post => post._id !== action.payload);  // Remove the deleted post
       })
       .addCase(deletePost.rejected, (state, action) => {
         state.loading = false;
@@ -115,23 +115,23 @@ const feedSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      
-    // Like Post
-    .addCase(likePost.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(likePost.fulfilled, (state, action) => {
-      state.loading = false;
-      const likedPost = action.payload; // Get the post with updated like count
-      const existingPost = state.posts.find(post => post._id === likedPost._id);
-      if (existingPost) {
-        existingPost.likes = likedPost.likes;  // Update the likes for the specific post
-      }
-    })
-    .addCase(likePost.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
+
+      // Like Post
+      .addCase(likePost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(likePost.fulfilled, (state, action) => {
+        state.loading = false;
+        const likedPost = action.payload;
+        const existingPost = state.posts.find(post => post._id === likedPost._id);
+        if (existingPost) {
+          existingPost.likes = likedPost.likes;  // Update likes for the specific post
+        }
+      })
+      .addCase(likePost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
