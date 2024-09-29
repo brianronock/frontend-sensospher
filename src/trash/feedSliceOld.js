@@ -58,7 +58,23 @@ const feedSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    // Add new post via WebSocket
+    addPost: (state, action) => {
+      state.posts.push(action.payload);
+    },
+    // Remove post via WebSocket
+    removePost: (state, action) => {
+      state.posts = state.posts.filter((post) => post._id !== action.payload);
+    },
+    // Update post (e.g., like) via WebSocket
+    updatePost: (state, action) => {
+      const index = state.posts.findIndex((post) => post._id === action.payload._id);
+      if (index !== -1) {
+        state.posts[index] = action.payload;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Fetch Posts

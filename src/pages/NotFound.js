@@ -2,8 +2,8 @@
  * NotFound.js
  * Displays a message when the user navigates to a non-existent route.
  ***********************************************************/
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
   return (
@@ -12,7 +12,7 @@ const NotFound = () => {
       <p>The page you're looking for doesn't exist.</p>
       <Link to="/">Go back to Home</Link>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

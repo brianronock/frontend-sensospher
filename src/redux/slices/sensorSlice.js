@@ -2,18 +2,18 @@
  * sensorSlice.js
  * Redux slice for managing sensor data state and actions.
  ***********************************************************/
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchSensorsService } from '../../services/sensorService';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchSensorsService } from '../../services/sensorService'
 
 // Thunk to fetch sensor data
 export const fetchSensors = createAsyncThunk('sensors/fetchSensors', async (_, thunkAPI) => {
   try {
-    const response = await fetchSensorsService();
-    return response;
+    const response = await fetchSensorsService()
+    return response
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+    return thunkAPI.rejectWithValue(error.response.data)
   }
-});
+})
 
 const sensorSlice = createSlice({
   name: 'sensor',
@@ -26,17 +26,17 @@ const sensorSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSensors.pending, (state) => {
-        state.loading = true;
+        state.loading = true
       })
       .addCase(fetchSensors.fulfilled, (state, action) => {
-        state.loading = false;
-        state.sensors = action.payload;
+        state.loading = false
+        state.sensors = action.payload
       })
       .addCase(fetchSensors.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+        state.loading = false
+        state.error = action.payload
+      })
   },
-});
+})
 
-export default sensorSlice.reducer;
+export default sensorSlice.reducer

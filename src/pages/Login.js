@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../redux/slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../redux/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);  // State to toggle password visibility
-  const [errorMessage, setErrorMessage] = useState('');
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)  // State to toggle password visibility
+  const [errorMessage, setErrorMessage] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await dispatch(loginUser({ email, password })).unwrap();
-      setErrorMessage('');
-      navigate('/feed');
+      await dispatch(loginUser({ email, password })).unwrap()
+      setErrorMessage('')
+      navigate('/feed')
     } catch (error) {
-      setErrorMessage('Login failed. Please check your credentials.');
+      setErrorMessage('Login failed. Please check your credentials.')
     }
-  };
+  }
 
   return (
     <div>
@@ -47,7 +47,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

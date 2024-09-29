@@ -1,23 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import { Chart, TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController } from 'chart.js';
-import 'chartjs-adapter-luxon';
+import React, { useEffect, useRef } from 'react'
+import { Chart, TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController } from 'chart.js'
+import 'chartjs-adapter-luxon'
 
-Chart.register(TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController);
+Chart.register(TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController)
 
 const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColorHumidity, backgroundColorTemperature, backgroundColorHumidity }) => {
-  const chartRef = useRef(null);
-  const chartInstanceRef = useRef(null);
+  const chartRef = useRef(null)
+  const chartInstanceRef = useRef(null)
 
   useEffect(() => {
-    const temperatureData = sensorData.filter((dataPoint) => dataPoint.type === 'temperature');
-    const humidityData = sensorData.filter((dataPoint) => dataPoint.type === 'humidity');
+    const temperatureData = sensorData.filter((dataPoint) => dataPoint.type === 'temperature')
+    const humidityData = sensorData.filter((dataPoint) => dataPoint.type === 'humidity')
 
     if (chartInstanceRef.current) {
       // Update the chart with the latest data
-      chartInstanceRef.current.data.labels = temperatureData.map((dataPoint) => dataPoint.timestamp);
-      chartInstanceRef.current.data.datasets[0].data = temperatureData.map((dataPoint) => dataPoint.value);
-      chartInstanceRef.current.data.datasets[1].data = humidityData.map((dataPoint) => dataPoint.value);
-      chartInstanceRef.current.update(); // Re-render only the updated parts
+      chartInstanceRef.current.data.labels = temperatureData.map((dataPoint) => dataPoint.timestamp)
+      chartInstanceRef.current.data.datasets[0].data = temperatureData.map((dataPoint) => dataPoint.value)
+      chartInstanceRef.current.data.datasets[1].data = humidityData.map((dataPoint) => dataPoint.value)
+      chartInstanceRef.current.update() // Re-render only the updated parts
     } else {
       // Create a new chart instance for historical data
       const chartInstance = new Chart(chartRef.current, {
@@ -67,13 +67,13 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
             },
           },
         },
-      });
-      chartInstanceRef.current = chartInstance; // Store the chart instance
+      })
+      chartInstanceRef.current = chartInstance // Store the chart instance
     }
-  }, [sensorData, backgroundColorHumidity, backgroundColorTemperature, borderColorTemperature, borderColorHumidity]);
+  }, [sensorData, backgroundColorHumidity, backgroundColorTemperature, borderColorTemperature, borderColorHumidity])
 
-  return <canvas ref={chartRef} />;
-//   return <canvas ref={chartRef} style={{ height: '30vh' }} />;
-};
+  return <canvas ref={chartRef} />
+//   return <canvas ref={chartRef} style={{ height: '30vh' }} />
+}
 
-export default SensorChartHistorical;
+export default SensorChartHistorical

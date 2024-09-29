@@ -2,20 +2,20 @@
  * Register.js
  * The registration page component where new users can sign up.
  ***********************************************************/
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../redux/slices/authSlice';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { registerUser } from '../redux/slices/authSlice'
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(registerUser({ name, email, password }));
-  };
+    e.preventDefault()
+    dispatch(registerUser({ name, email, password }))
+  }
 
   return (
     <div>
@@ -42,7 +42,7 @@ const Register = () => {
         <button type="submit">Register</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

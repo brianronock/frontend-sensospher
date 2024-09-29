@@ -1,6 +1,6 @@
-import React from 'react';
-import LiveFeed from './LiveFeed';  // Import LiveFeed component
-import Sensors from '../pages/Sensors';    // Import Sensors component
+import React from 'react'
+import LiveFeed from './LiveFeed'  // Import LiveFeed component
+import Sensors from '../pages/Sensors'    // Import Sensors component
 
 const Dashboard = ({ socket }) => {
   return (
@@ -9,7 +9,7 @@ const Dashboard = ({ socket }) => {
       <div className="dashboard-content">
         {/* Left: LiveFeed */}
         <div className="live-feed-section">
-          <LiveFeed />
+          <LiveFeed socket={socket} />
         </div>
 
         {/* Right: Sensors (Sensor Charts) */}
@@ -18,7 +18,7 @@ const Dashboard = ({ socket }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

@@ -2,8 +2,8 @@
  * Sidebar.js
  * This component renders the sidebar navigation for the dashboard.
  ***********************************************************/
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -15,7 +15,7 @@ const Sidebar = () => {
         <li><Link to="/profile">Profile</Link></li>
       </ul>
     </aside>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

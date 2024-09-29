@@ -2,35 +2,35 @@
  * Navbar.js
  * This component renders the navigation bar with links.
  ***********************************************************/
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/slices/authSlice';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../redux/slices/authSlice'
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);  // Access auth state
-  const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state) => state.auth)  // Access auth state
+  const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
-    setIsActive(!isActive);
-  };
+    setIsActive(!isActive)
+  }
 
   const handleLogout = () => {
-    dispatch(logout());  // Dispatch the logout action
-    setIsActive(false);  // Close navbar after logout
-  };
+    dispatch(logout())  // Dispatch the logout action
+    setIsActive(false)  // Close navbar after logout
+  }
 
   // Close navbar when a link is clicked
   const handleLinkClick = () => {
-    setIsActive(false);
-  };
+    setIsActive(false)
+  }
 
   return (
     <nav>
       <div className={`navbar ${isActive ? 'active' : ''}`}>
         <div className="navbar-icon" onClick={handleToggle}>
-          &#9776; {/* Hamburger icon */}
+          &#9776 {/* Hamburger icon */}
         </div>
         <div className='nav-links'>
           <ul>
@@ -48,7 +48,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

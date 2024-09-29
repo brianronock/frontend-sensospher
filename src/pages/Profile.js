@@ -2,24 +2,24 @@
  * Profile.js
  * Component to display user profile information
  ***********************************************************/
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile } from '../redux/slices/authSlice';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUserProfile } from '../redux/slices/authSlice'
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+  const { user, loading, error } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    dispatch(fetchUserProfile());
-  }, [dispatch]);
+    dispatch(fetchUserProfile())
+  }, [dispatch])
 
   if (loading) {
-    return <p>Loading profile...</p>;
+    return <p>Loading profile...</p>
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return <p>Error: {error}</p>
   }
 
   return (
@@ -38,7 +38,7 @@ const Profile = () => {
     </div>      
     </div>
 
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

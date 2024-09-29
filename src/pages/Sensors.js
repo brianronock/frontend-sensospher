@@ -1,54 +1,54 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSensors } from '../redux/slices/sensorSlice'; // Historical data slice
-import { updateTemperatureData, updateHumidityData } from '../redux/slices/sensorRealTimeSlice'; // Real-time data slice
-import SensorChartSingle from '../components/SensorChart';
-import SensorChartHistorical from '../components/SensorChartHistorical'; // New component for historical data
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchSensors } from '../redux/slices/sensorSlice' // Historical data slice
+import { updateTemperatureData, updateHumidityData } from '../redux/slices/sensorRealTimeSlice' // Real-time data slice
+import SensorChartSingle from '../components/SensorChart'
+import SensorChartHistorical from '../components/SensorChartHistorical' // New component for historical data
 
 const Sensors = ({ socket }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   
   // Access both real-time data and historical data from Redux store
-  const { sensors, loading } = useSelector((state) => state.sensor);  // Historical data
-  const { temperatureData, humidityData } = useSelector((state) => state.sensorRealTime);  // Real-time data
+  const { sensors, loading } = useSelector((state) => state.sensor)  // Historical data
+  const { temperatureData, humidityData } = useSelector((state) => state.sensorRealTime)  // Real-time data
 
   useEffect(() => {
     // Fetch historical sensor data when the component mounts
-    dispatch(fetchSensors());
+    dispatch(fetchSensors())
   
     const handleSensorData = (data) => {
       // Convert the timestamp to ISO string before dispatching
-      const newData = { timestamp: new Date().toISOString(), value: data.value };
+      const newData = { timestamp: new Date().toISOString(), value: data.value }
       
       if (data.type === 'temperature') {
-        dispatch(updateTemperatureData(newData));  // Update real-time temperature
+        dispatch(updateTemperatureData(newData))  // Update real-time temperature
       } else if (data.type === 'humidity') {
-        dispatch(updateHumidityData(newData));  // Update real-time humidity
+        dispatch(updateHumidityData(newData))  // Update real-time humidity
       }
-    };
+    }
   
     if (socket) {
-      socket.on('sensorData', handleSensorData);
+      socket.on('sensorData', handleSensorData)
     }
   
     return () => {
       if (socket) {
-        socket.off('sensorData', handleSensorData);
+        socket.off('sensorData', handleSensorData)
       }
-    };
-  }, [socket, dispatch]);
+    }
+  }, [socket, dispatch])
 
   // Combine real-time and historical data for the historical chart
   const combinedData = [
     ...sensors, 
     ...temperatureData.map(data => ({ ...data, type: 'temperature' })), 
     ...humidityData.map(data => ({ ...data, type: 'humidity' }))
-  ];
+  ]
 
   // Limit combined data to the last 10 minutes for the historical chart
-  const now = new Date();
-  const tenMinutesAgo = new Date(now.getTime() - 10 * 60 * 1000); // 10 minutes ago
-  const recentCombinedData = combinedData.filter((dataPoint) => new Date(dataPoint.timestamp) >= tenMinutesAgo);
+  const now = new Date()
+  const tenMinutesAgo = new Date(now.getTime() - 10 * 60 * 1000) // 10 minutes ago
+  const recentCombinedData = combinedData.filter((dataPoint) => new Date(dataPoint.timestamp) >= tenMinutesAgo)
 
   return (
     <div>
@@ -79,7 +79,7 @@ const Sensors = ({ socket }) => {
         />
       </div>      
     </div>
-  );
-};
+  )
+}
 
-export default Sensors;
+export default Sensors

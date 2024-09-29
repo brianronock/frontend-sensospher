@@ -1,52 +1,67 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, createPost, deletePost, updatePost, likePost } from '../redux/slices/feedSlice';
-import Post from './Post';
+import React, { useContext, useState, useEffect, useCallback } from 'react'
+import { PostContext } from '../hooks/context/PostContext'
+import Post from './Post'
 
-const LiveFeed = () => {
-  const dispatch = useDispatch();
-  const { posts, loading, error } = useSelector((state) => state.feed);
-  const [newPost, setNewPost] = useState('');
-  const [editMode, setEditMode] = useState(null);
-  const [editContent, setEditContent] = useState('');
+const LiveFeed = ({ socket }) => {
+  const { posts, loading, error, createPost, deletePost, updatePost, likePost } = useContext(PostContext)
+  const [newPost, setNewPost] = useState('')
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+    if (socket) {
+      console.log('WebSocket connection established:', socket);  // Check socket instance
+
+
+      socket.on('newPost', (post) => {
+        createPost(post)       
+        console.log('Received new post:', post)
+      })
+      socket.on('deletePost', ({ postId }) => {
+        try {
+          deletePost(postId);
+          console.log('Post deleted:', postId);
+        } catch (error) {
+          console.error('Error deleting post:', error);
+        }
+      });
+      socket.on('likePost', (updatedPost) => {
+        updatePost(updatedPost._id, updatedPost)
+        console.log('Post liked/unliked:', updatedPost)
+      })
+
+      return () => {
+        socket.off('newPost')
+        socket.off('deletePost')
+        socket.off('likePost')
+      }
+    }
+  }, [socket, createPost, deletePost, updatePost, updatePost._id])
 
   const handlePostSubmit = useCallback((e) => {
-    e.preventDefault();
-    if (newPost.trim() !== '') {
-      dispatch(createPost({ content: newPost }));
-      setNewPost('');
+    e.preventDefault()
+    if (newPost.trim()) {
+      createPost(newPost)
+      setNewPost('')
     }
-  }, [dispatch, newPost]);
+  }, [newPost, createPost])
 
-  const handleEdit = useCallback((postId) => {
-    const postToEdit = posts.find((post) => post._id === postId);
-    setEditContent(postToEdit.content);
-    setEditMode(postId);
-  }, [posts]);
-
-  const handleEditSubmit = useCallback((postId) => {
-    dispatch(updatePost({ id: postId, content: editContent }));
-    setEditMode(null);
-  }, [dispatch, editContent]);
+  const handleLike = useCallback((postId) => {
+    if (postId) {
+      likePost(postId)
+    } else {
+      console.error('Post ID is undefined')
+    }
+  }, [likePost])
 
   const handleDelete = useCallback((postId) => {
-    dispatch(deletePost(postId));
-  }, [dispatch]);
+    deletePost(postId)
+  }, [deletePost])
 
-  const handleLike = useCallback((postId, isLiked) => {
-    if (!isLiked) {
-      dispatch(likePost(postId))
-        .unwrap()
-        .catch((error) => console.error('Error liking post:', error));
-    }
-  }, [dispatch]);
+  const handleUpdatePost = useCallback((postId, content) => {
+    updatePost(postId, content)
+  }, [updatePost])
 
-  if (loading) return <p>Loading feed...</p>;
-  if (error) return <p>Error loading feed: {error.message || 'Unknown error'}</p>;
+  if (loading) return <p>Loading feed...</p>
+  if (error) return <p>Error loading feed: {error.message || 'Unknown error'}</p>
 
   return (
     <div>
@@ -65,14 +80,10 @@ const LiveFeed = () => {
             <Post
               key={post._id}
               post={post}
-              isLiked={post.likes.includes(localStorage.getItem('userId'))}
+              isLiked={Array.isArray(post.likes) && post.likes.includes(localStorage.getItem('userId'))}
               onLike={handleLike}
-              onEdit={handleEdit}
               onDelete={handleDelete}
-              editMode={editMode}
-              editContent={editContent}
-              setEditContent={setEditContent}
-              onEditSubmit={handleEditSubmit}
+              onEditSubmit={handleUpdatePost}
             />
           ))
         ) : (
@@ -80,7 +91,7 @@ const LiveFeed = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LiveFeed;
+export default LiveFeed
