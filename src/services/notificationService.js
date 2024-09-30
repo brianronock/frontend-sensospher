@@ -1,7 +1,16 @@
 /***********************************************************
- * notificationService.js
- * Handles API requests for fetching and managing notifications.
- ***********************************************************/
+    src/services/notificationService.js
+/********************************************************************************************************
+Purpose:
+The `notificationService.js` handles API requests for notifications. While it's not fully integrated yet (as seen in your previous prompts), it's designed to allow users to receive and manage notifications.
+
+#Key Functions:
+- `fetchNotificationsService()`: Sends a GET request to fetch all notifications.
+- `markAsReadService(notificationId)`: Sends a PUT request to mark a specific notification as read.
+
+How it integrates:
+- This service could later integrate with the `notificationSlice.js` to manage notifications in the frontend.
+********************************************************************************************************/
 import axios from 'axios'
 
 const API_URL = '/api/notifications'  // Base URL for notifications

@@ -1,3 +1,24 @@
+/***********************************************************
+    src/components/SensorChartHistorical.js
+/********************************************************************************************************
+Purpose:
+`SensorChartHistorical.js` visualizes historical sensor data for both temperature and humidity over the past 10 minutes.
+
+Key Features:
+	•	Displays both temperature and humidity trends over time.
+	•	Dynamic updates: Automatically updates the chart when new data is available.
+	•	Customizable colors for temperature and humidity lines.
+	•	Smooth transitions and animations for chart updates.
+
+Function Flow:
+	1.	Component Initialization: Chart.js is registered, and a useRef is used to hold the chart instance.
+	2.	Data Processing: Filters the incoming sensorData into temperature and humidity arrays.
+	3.	Chart Creation/Update:
+	•	If no chart exists, a new line chart is created using timestamps as x-axis labels.
+	•	If the chart exists, it updates the datasets and labels dynamically.
+	4.	Rendering: The chart is rendered in a canvas element using the ref.
+
+********************************************************************************************************/
 import React, { useEffect, useRef } from 'react'
 import { Chart, TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController } from 'chart.js'
 import 'chartjs-adapter-luxon'
@@ -56,7 +77,7 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
             x: {
               type: 'time',
               time: {
-                unit: 'minute',  // Use minutes for historical data
+                unit: 'minute',  // Use minutes
               },
               title: {
                 display: true,

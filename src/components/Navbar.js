@@ -1,7 +1,16 @@
 /***********************************************************
- * Navbar.js
- * This component renders the navigation bar with links.
- ***********************************************************/
+    src/components/LiveFeed.js
+/********************************************************************************************************
+Purpose:
+`Navbar.js` renders the navigation bar with links to different routes such as `Home`, `Dashboard`, `Profile`, `Sensors`, and `Live Feed`. It dynamically changes based on the user's authentication status.
+
+#Key Features:
+
+
+#Function Flow:
+
+
+********************************************************************************************************/
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'

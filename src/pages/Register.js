@@ -1,7 +1,20 @@
 /***********************************************************
- * Register.js
- * The registration page component where new users can sign up.
- ***********************************************************/
+    src/pages/Register.js
+/********************************************************************************************************
+Purpose:
+The `Register.js` component allows users to sign up for a new account by submitting their name, email, and password. The form dispatches the `registerUser` action from the `authSlice`.
+
+#Key Features:
+- Form Handling: The form collects the user's name, email, and password, and upon submission, triggers the `registerUser` action in Redux.
+- Local State: Uses `useState` to manage the input values for name, email, and password.
+- Dispatching Actions: The `handleSubmit` function dispatches the user registration data to the Redux store.
+
+#Function Flow:
+1. User inputs name, email, and password.
+2. On form submission, `handleSubmit` dispatches the `registerUser` action.
+3. The user is successfully registered and logged in after registration.
+
+********************************************************************************************************/
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../redux/slices/authSlice'

@@ -1,3 +1,16 @@
+/***********************************************************
+    src/components/LiveFeed.js
+/********************************************************************************************************
+Purpose:
+`LiveFeed.js` manages the real-time post feed, handling operations such as creating, updating, deleting, and liking posts. It fetches posts from the backend via the Redux store and displays them in a feed format.
+
+#Key Features:
+
+
+#Function Flow:
+
+
+********************************************************************************************************/
 import React, { useContext, useState, useEffect, useCallback } from 'react'
 import { PostContext } from '../hooks/context/PostContext'
 import Post from './Post'

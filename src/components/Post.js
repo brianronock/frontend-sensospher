@@ -1,3 +1,16 @@
+/***********************************************************
+    src/components/Post.js
+/********************************************************************************************************
+Purpose:
+`Post.js` is used to render each individual post in the live feed. It includes options for editing, liking, and deleting posts.
+
+#Key Features:
+
+
+#Function Flow:
+
+
+********************************************************************************************************/
 import React, { useState } from 'react'
 
 // const Post = React.memo(({ post, onLike, onEdit, onDelete, isLiked, editMode, editContent, setEditContent, onEditSubmit }) => {

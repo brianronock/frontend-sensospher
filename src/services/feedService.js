@@ -1,7 +1,19 @@
 /***********************************************************
- * feedService.js
- * Handles API requests for fetching and managing live feed.
- ***********************************************************/
+    src/services/feedService.js
+/********************************************************************************************************
+Purpose:
+The `feedService.js` handles API requests for the live feed (e.g., fetching, creating, updating, deleting posts, and liking posts). It provides the functions that allow your frontend to interact with the backend.
+
+#Key Functions:
+- `fetchPostsService()`: Sends a GET request to fetch all posts from the live feed. The `Authorization` header is included for authentication.
+- `createPostService(postData)`: Sends a POST request to create a new post. The post data (content) is passed in the body.
+- `deletePostService(postId)`: Sends a DELETE request to remove a post by its ID.
+- `updatePostService(postId, updatedContent)`: Sends a PUT request to update an existing post's content.
+- `likePostService(postId)`: Sends a POST request to like or unlike a post.
+
+How it integrates:
+- This file is connected to the `feedSlice.js` in your Redux store, and it helps manage state changes related to live feed posts by dispatching relevant actions.
+********************************************************************************************************/
 import axios from 'axios'
 
 // const API_URL = 'http://192.168.0.16:3000/api/feed'

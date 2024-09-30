@@ -1,7 +1,16 @@
 /***********************************************************
- * Sidebar.js
- * This component renders the sidebar navigation for the dashboard.
- ***********************************************************/
+    src/components/SideBar.js
+/********************************************************************************************************
+Purpose:
+`Sidebar.js` renders a simple sidebar with navigation links for different parts of the app (e.g., `Dashboard`, `Sensors`, `Live Feed`, `Profile`).
+
+#Key Features:
+
+
+#Function Flow:
+
+
+********************************************************************************************************/
 import React from 'react'
 import { Link } from 'react-router-dom'
 

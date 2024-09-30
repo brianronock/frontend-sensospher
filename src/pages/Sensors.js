@@ -1,3 +1,20 @@
+/***********************************************************
+    src/pages/Sensors.js
+/********************************************************************************************************
+Purpose:
+`Sensors.js` displays both real-time and historical sensor data. It fetches historical sensor data from the backend using `fetchSensors` and listens for real-time data through WebSockets.
+
+#Key Features:
+- Historical Data: Uses the `sensorSlice` to fetch historical data and store it in Redux.
+- Real-Time Data: The component listens for real-time sensor data using the WebSocket connection, and the data is updated dynamically through the `sensorRealTimeSlice`.
+- Chart Visualization: Displays two real-time sensor charts (for temperature and humidity) and a combined historical chart using `SensorChartSingle` and `SensorChartHistorical` components.
+
+#Function Flow:
+1. On mount, `fetchSensors` is dispatched to load historical data.
+2. The component sets up a WebSocket listener to receive real-time data and updates the charts dynamically.
+3. Historical data is combined with real-time data to display a 10-minute window in the historical chart.
+
+********************************************************************************************************/
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSensors } from '../redux/slices/sensorSlice' // Historical data slice

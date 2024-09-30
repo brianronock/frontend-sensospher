@@ -1,7 +1,22 @@
 /***********************************************************
- * sensorSlice.js
- * Redux slice for managing sensor data state and actions.
- ***********************************************************/
+    src/redux/slices/sensorSlice.js
+/********************************************************************************************************
+Purpose:
+Manages the sensor data fetched from your backend (typically historical data). This slice handles asynchronous actions (using Redux Thunks) to fetch sensor data and update the state accordingly.
+
+#Key Functions:
+- `fetchSensors` (Thunk): 
+  - Fetches sensor data from the backend service `fetchSensorsService`.
+  - Handles three states: `pending`, `fulfilled`, and `rejected`, ensuring proper loading states and error handling.
+  
+#State:
+- sensors: An array of sensor data fetched from the backend.
+- loading: Boolean that tracks whether the data is currently being fetched.
+- error: Stores any errors that occur during fetching.
+
+#Recommendations:
+- The implementation is solid. You could also include an error retry mechanism in your component that uses this slice, which can help improve the UX when fetching fails.
+********************************************************************************************************/
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchSensorsService } from '../../services/sensorService'
 

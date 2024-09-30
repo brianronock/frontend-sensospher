@@ -1,7 +1,22 @@
 /***********************************************************
- * authSlice.js
- * Redux slice for managing authentication state and actions.
- ***********************************************************/
+    src/redux/slices/authSlice.js
+/********************************************************************************************************
+Purpose:
+Manages authentication-related state (login, register, profile fetching). It handles user login, logout, registration, and loading the user profile from local storage. This slice is critical for managing protected routes and user sessions.
+
+#Key Functions:
+- `loginUser`: Logs in a user by calling the `loginService`, saving the token to localStorage, and updating the state with user data.
+- `registerUser`: Registers a new user and saves the token to localStorage.
+- `loadUserFromLocalStorage`: When the app starts, this function checks for a token in localStorage and fetches the user's profile if the token exists.
+- `fetchUserProfile`: Fetches the user's profile from the backend.
+- `logout`: Clears the user state and token when a user logs out.
+
+#State:
+- user: Stores the currently authenticated user's data.
+- isAuthenticated: Boolean indicating whether the user is logged in.
+- loading: Boolean indicating whether authentication-related actions are being processed.
+- error: Stores any authentication-related errors.
+********************************************************************************************************/
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { loginService, registerService, getProfile } from '../../services/authService'
 import { saveToken, clearToken } from '../../utils/authHelper'

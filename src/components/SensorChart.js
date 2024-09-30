@@ -1,3 +1,26 @@
+/***********************************************************
+    src/components/SensorChart.js
+/********************************************************************************************************
+Purpose:
+`SensorChart.js` renders a real-time sensor data chart using the `Chart.js` library. It updates every 10 seconds and displays data within the last 60 seconds.
+
+#Key Features:
+	•	Filters and displays sensor data from the last 60 seconds.
+	•	Automatically updates the chart every 10 seconds.
+	•	Customizable chart appearance with dynamic labels and colors for temperature and humidity.
+	•	Responsive design to fit within the parent container.
+
+Function Flow:
+	1.	Component Initialization: Registers Chart.js elements and sets up references for chart instances.
+	2.	Data Filtering: Filters incoming sensorData to only include data from the last 60 seconds.
+	3.	Chart Creation/Update:
+	        •	If the chart instance exists, it updates the labels and data dynamically.
+	        •	If no chart exists, it creates a new one with the filtered data and applies customizable labels and styles.
+	4.	Periodic Updates: Sets up a setInterval to refresh the chart every 10 seconds to display updated sensor data.
+	5.	Cleanup: Ensures that the chart instance is cleared when the component is unmounted.
+
+This flow ensures the chart is always up-to-date and displays only the most recent sensor readings.
+********************************************************************************************************/
 import React, { useEffect, useRef } from 'react'
 import { Chart, TimeScale, LinearScale, LineElement, PointElement, CategoryScale, Title, Tooltip, Legend, Filler, LineController } from 'chart.js'
 import 'chartjs-adapter-luxon'

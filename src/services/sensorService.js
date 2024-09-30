@@ -1,7 +1,16 @@
 /***********************************************************
- * sensorService.js
- * Handles API requests for fetching and managing sensor data.
- ***********************************************************/
+    src/services/sensorService.js
+/********************************************************************************************************
+Purpose:
+The `sensorService.js` handles API requests related to sensors, fetching and updating sensor data.
+
+#Key Functions:
+- `fetchSensorsService()`: Sends a GET request to fetch all sensor data from the backend.
+- `updateSensorService(sensorId, sensorData)`: Sends a PUT request to update a specific sensor’s data.
+
+How it integrates:
+- The `sensorSlice.js` and `sensorRealTimeSlice.js` leverage this service to update the sensor data in the frontend.
+********************************************************************************************************/
 import axios from 'axios'
 
 const API_URL = 'http://localhost:3000/api/sensors'
