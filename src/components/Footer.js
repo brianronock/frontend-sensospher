@@ -7,7 +7,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-      <p>&copy {new Date().getFullYear()} SensoSphere</p>
+      <p>&copy; {new Date().getFullYear()} SensoSphere</p>
     </footer>
   )
 }

@@ -30,18 +30,28 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
               data: temperatureData.map((dataPoint) => dataPoint.value), // Temperature data
               borderColor: borderColorTemperature,
               backgroundColor: backgroundColorTemperature,
+              borderWidth: 0.3,
               fill: true,
+              pointRadius: 0.6,   // Set the size of the points
+              pointHoverRadius: 7,  // Size when hovered
+              pointBorderColor: borderColorTemperature, // Border color for points
+              pointBackgroundColor: backgroundColorTemperature, 
             },
             {
               label: 'Humidity (%)',
               data: humidityData.map((dataPoint) => dataPoint.value), // Humidity data
               borderColor: borderColorHumidity,
               backgroundColor: backgroundColorHumidity,
+              borderWidth: 0.3,
               fill: true,
+              pointRadius: 0.6,   // Set the size of the points
+              pointHoverRadius: 7,  // Size when hovered
             },
           ],
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               type: 'time',
@@ -72,7 +82,7 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
     }
   }, [sensorData, backgroundColorHumidity, backgroundColorTemperature, borderColorTemperature, borderColorHumidity])
 
-  return <canvas ref={chartRef} />
+  return <canvas ref={chartRef } style={{ height: '30vh' }}/>
 //   return <canvas ref={chartRef} style={{ height: '30vh' }} />
 }
 

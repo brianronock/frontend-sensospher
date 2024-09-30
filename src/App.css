@@ -1,7 +1,8 @@
 :root {
   --bgColor1: #03193a; /* Dark Blue */
-  --bgColor2: rgb(63, 9, 7); /* Primary 2 */
-  --bgColor3: #1565c0; /* Slightly lighter blue */
+  --bgColor2: rgba(50, 35, 135, 0.232); /* Primary 2 */
+  --bgColor3: #358aeb; /* Slightly lighter blue */
+  --color1: #f1ead2;
 }
 
 /* Global Styles */
@@ -14,13 +15,14 @@
 
 body {
   background-color: #010117f4; /* Dark background */
-  color: #e0e0e0; /* Light text */
+  color: var(--color1);
   line-height: 1.6;
 }
 
 a {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color1);
+  cursor: pointer;
 }
 
 ul {
@@ -30,12 +32,31 @@ ul {
 /* Main Container */
 .mainContainer {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 10px;
   height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  /* align-items: center;
+  justify-content: flex-start; */
+
+}
+.home{
+  display: flex;
+  margin: 10px
+}
+.leftCont{
+  flex: 3;
+}
+.rightCont{
+  flex: 1;
+}
+div.sensor{
+  box-shadow: 10px 10px 10px 0 solid white;
 }
 /* Dashboard*/
 .dashboard-container {
-  padding: 20px;
+  max-width: 100%;
 }
 
 .dashboard-content {
@@ -49,7 +70,7 @@ ul {
 }
 
 .sensor-section {
-  width: 50%;
+  width: 50vw;
 }
 
 /* Navbar */
@@ -60,7 +81,7 @@ div.navbar {
   padding: 1rem;
   width: 100%;
   max-width: 1200px;
-  color: white;
+  color: var(--color1);
   text-wrap: nowrap;
 }
 
@@ -71,11 +92,30 @@ div.navbar {
 
 .nav-links li {
   font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
 .nav-links li a {
-  color: white;
+  color: var(--color1);
   font-weight: bold;
+}
+.nav-links li:hover {
+  padding: 0 0.5rem;
+  color: var(--bgColor2);
+  font-weight: bold;
+  transform: scale(1.2);
+  box-shadow: 5px 10px 20px rgba(157, 0, 255, 0.242) inset;
+  border-radius: 2vw;
+}
+.nav-links a:hover{
+  color: var(--bgColor3);
+}
+
+.nav-link.active{
+  background: rgba(255, 0, 0, 0.405);
+}
+.nav-link.active a{
+  color: var(--color1);
 }
 
 .navbar-icon {
@@ -86,6 +126,21 @@ div.navbar {
 @media (max-width: 700px) {
   .nav-links li {
     font-size: 0.9rem;
+  }
+  .dashboard-content{
+    flex-direction: column-reverse;
+  }
+  .live-feed-section {
+    width: 95%;
+    margin-right: 20px;
+  }
+  
+  .sensor-section {
+    width: 90%;
+  }
+  
+  .historicalSensor{
+    display: none;
   }
 }
 
@@ -137,15 +192,23 @@ div.navbar {
   grid-template-columns: 1fr; /* Two columns */
   gap: 20px;
   padding: 20px;
+
+  
 }
 
 .chartContainer {
-  width: 100vw;
-  height: 30vh; /* Set the height of the chart */
+  width: 100%;
+  height: 50%; /* Set the height of the chart */
+  
+  
 }
 
 canvas {
-  width: 80vw;
+  max-width: 100%;
+  height: 100%;
+  /* box-shadow: 5px 10px 20px rgba(157, 0, 255, 0.242) inset;
+  border-radius: 2vw; */
+
 }
 
 /* Responsiveness for Charts */
@@ -225,6 +288,7 @@ form button:hover {
 /* Footer */
 footer {
   background-color: var(--bgColor2);
+  margin-left: -2rem;
   padding: 10px;
   text-align: center;
   color: #e0e0e0;

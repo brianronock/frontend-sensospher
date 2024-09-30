@@ -55,28 +55,34 @@ const Sensors = ({ socket }) => {
       <h1>Sensors</h1>
       {loading && <p>Loading historical sensor data...</p>}
       <div className='sensorsWrapper'>
+        <div className='sensor realTimeSensor'>
         {/* Real-time Temperature */}
-        <SensorChartSingle 
-          sensorData={temperatureData} 
-          label="Temperature (°C)" 
-          borderColor="rgba(75,192,192,1)" 
-          backgroundColor="rgba(75,192,192,0.2)" 
-        />
-        {/* Real-time Humidity */}
-        <SensorChartSingle 
-          sensorData={humidityData} 
-          label="Humidity (%)" 
-          borderColor="rgba(153,102,255,1)" 
-          backgroundColor="rgba(153,102,255,0.2)" 
-        />
-        {/* Historical Data (Both Temperature and Humidity) */}
-        <SensorChartHistorical 
-          sensorData={recentCombinedData} // Pass recent data here
-          borderColorTemperature="rgba(75,192,192,1)" 
-          borderColorHumidity="rgba(153,102,255,1)" 
-          backgroundColorTemperature="rgba(75,192,192,0.2)" 
-          backgroundColorHumidity="rgba(153,102,255,0.2)" 
-        />
+          <SensorChartSingle 
+              sensorData={temperatureData} 
+              label="Temperature (°C)" 
+              borderColor="rgba(75,192,192,1)" 
+              backgroundColor="rgba(75,192,192,0.2)" 
+            />        
+        </div>
+        <div className='sensor realTimeSensor'>
+          {/* Real-time Humidity */}
+          <SensorChartSingle 
+            sensorData={humidityData} 
+            label="Humidity (%)" 
+            borderColor="rgba(153,102,255,1)" 
+            backgroundColor="rgba(153,102,255,0.2)" 
+          />       
+        </div>
+        <div className='sensor historicalSensor'>
+            {/* Historical Data (Both Temperature and Humidity) */}
+            <SensorChartHistorical 
+              sensorData={recentCombinedData} // Pass recent data here
+              borderColorTemperature="rgba(75,192,192,1)" 
+              borderColorHumidity="rgba(153,102,255,1)" 
+              backgroundColorTemperature="rgba(75,192,192,0.2)" 
+              backgroundColorHumidity="rgba(153,102,255,0.2)" 
+            />       
+        </div>
       </div>      
     </div>
   )

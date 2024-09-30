@@ -38,11 +38,19 @@ const SensorChartSingle = ({ sensorData, label, borderColor, backgroundColor }) 
               data: filteredData.map((dataPoint) => dataPoint.value), // Dynamic data
               borderColor: borderColor, // Dynamic border color
               backgroundColor: backgroundColor, // Dynamic background color
+              borderWidth: 0.5,
               fill: true,
+              pointRadius: 3, 
+              pointHoverRadius: 10,  
+              pointBorderColor: borderColor, 
+              pointBackgroundColor: backgroundColor, 
+
             },
           ],
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               type: 'time',
@@ -67,7 +75,7 @@ const SensorChartSingle = ({ sensorData, label, borderColor, backgroundColor }) 
             },
           },
           plugins: {
-            legend: {
+              legend: {
               display: true,
               position: 'top',
             },
@@ -89,7 +97,7 @@ const SensorChartSingle = ({ sensorData, label, borderColor, backgroundColor }) 
     return () => clearInterval(interval) // Clean up the interval on component unmount
   }, [])
 
-  return <canvas ref={chartRef} />
+  return <canvas ref={chartRef} style={{ height: '20vh' }} />
   // return <canvas ref={chartRef} style={{ height: '30vh' }} />
 }
 

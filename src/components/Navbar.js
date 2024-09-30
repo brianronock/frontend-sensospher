@@ -26,16 +26,23 @@ const Navbar = () => {
     setIsActive(false)
   }
 
+  const handleClick = () =>{
+    setIsActive(true)
+    setTimeout(() => {
+      setIsActive(false)
+    }, 100)
+  }
+
   return (
     <nav>
       <div className={`navbar ${isActive ? 'active' : ''}`}>
         <div className="navbar-icon" onClick={handleToggle}>
-          &#9776 {/* Hamburger icon */}
+          &#9776; {/* Hamburger icon */}
         </div>
-        <div className='nav-links'>
+        <div className="nav-links">
           <ul>
-            <li><Link to="/" onClick={handleLinkClick}>Home</Link></li>
-            <li><Link to="/dashboard" onClick={handleLinkClick}>Dashboard</Link></li>
+            <li className={`nav-link ${isActive ? 'active' : ''}`} onClick={handleClick}><Link to="/" onClick={handleLinkClick}>Home</Link></li>
+            <li ><Link to="/dashboard" onClick={handleLinkClick}>Dashboard</Link></li>
             <li><Link to="/profile" onClick={handleLinkClick}>Profile</Link></li>
             <li><Link to="/sensors" onClick={handleLinkClick}>Sensors</Link></li>
             <li><Link to="/feed" onClick={handleLinkClick}>Live Feed</Link></li>
