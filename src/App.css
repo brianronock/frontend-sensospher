@@ -5,6 +5,7 @@
   --color1: #f1ead2;
 }
 
+
 /* Global Styles */
 * {
   margin: 0;
@@ -31,7 +32,7 @@ ul {
 
 /* Main Container */
 .mainContainer {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 10px;
   height: calc(100vh - 60px);
   display: flex;
@@ -291,8 +292,19 @@ footer {
   margin-left: -2rem;
   padding: 10px;
   text-align: center;
-  color: #e0e0e0;
+  color: var(--color1);
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
+}
+
+.header {
+  background-color: var(--bgColor2);
+  text-align: center;
+  color: var(--color1);
+  width: 100vw;
+  margin-left: -2rem;
+  margin-top: -0.5rem;
+  display: flex;
+  justify-content: center;
 }

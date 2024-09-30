@@ -30,9 +30,9 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
               data: temperatureData.map((dataPoint) => dataPoint.value), // Temperature data
               borderColor: borderColorTemperature,
               backgroundColor: backgroundColorTemperature,
-              borderWidth: 0.3,
+              borderWidth: 0.5,
               fill: true,
-              pointRadius: 0.6,   // Set the size of the points
+              pointRadius: 1.5,   // Set the size of the points
               pointHoverRadius: 7,  // Size when hovered
               pointBorderColor: borderColorTemperature, // Border color for points
               pointBackgroundColor: backgroundColorTemperature, 
@@ -42,9 +42,9 @@ const SensorChartHistorical = ({ sensorData, borderColorTemperature, borderColor
               data: humidityData.map((dataPoint) => dataPoint.value), // Humidity data
               borderColor: borderColorHumidity,
               backgroundColor: backgroundColorHumidity,
-              borderWidth: 0.3,
+              borderWidth: 0.5,
               fill: true,
-              pointRadius: 0.6,   // Set the size of the points
+              pointRadius: 1.5,   // Set the size of the points
               pointHoverRadius: 7,  // Size when hovered
             },
           ],

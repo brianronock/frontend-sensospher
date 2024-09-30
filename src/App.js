@@ -17,6 +17,7 @@ import Footer from './components/Footer'
 import './App.css'
 import io from 'socket.io-client' // Assuming you're using socket.io
 import PostProvider from './hooks/context/PostContext'
+import { Header } from './components/Header'
 
 
 
@@ -44,7 +45,7 @@ const App = () => {
     <>
       <PostProvider>
         <div className='mainContainer'>
-          <Navbar />
+          <Header />
           <div className='container'>
             <Routes>
               <Route path="/" element={ <Home /> } />
