@@ -53,8 +53,10 @@ const Navbar = () => {
             <li className={`nav-link ${isActive ? 'active' : ''}`} onClick={handleClick}><Link to="/" onClick={handleLinkClick}>Home</Link></li>
             <li ><Link to="/dashboard" onClick={handleLinkClick}>Dashboard</Link></li>
             <li><Link to="/profile" onClick={handleLinkClick}>Profile</Link></li>
+            <li><Link to="/newProfile" onClick={handleLinkClick}>New Profile</Link></li>
             <li><Link to="/sensors" onClick={handleLinkClick}>Sensors</Link></li>
             <li><Link to="/feed" onClick={handleLinkClick}>Live Feed</Link></li>
+            <li><Link to="/addFeed" onClick={handleLinkClick}>New Live Feed</Link></li>
             {!isAuthenticated ? (
               <li><Link to="/login" style={{color: "lime"}} onClick={handleLinkClick}>Login</Link></li>
             ) : (

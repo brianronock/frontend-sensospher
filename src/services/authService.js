@@ -15,11 +15,16 @@ How it integrates:
 ********************************************************************************************************/
 import axios from 'axios';
 
-// To access from other local network devices...
-// const API_URL = 'http://192.168.0.16:3000/api/auth';  // Auth-related API base URL
-// const USER_API_URL = 'http://192.168.0.16:3000/api/users';  // User-related API base URL
-const API_URL = 'http://localhost:3000/api/auth';  // Auth-related API base URL
-const USER_API_URL = 'http://localhost:3000/api/users';  // User-related API base URL
+// To access from other local network devices...at Home
+ //const API_URL = 'http://192.168.0.16:3000/api/auth';  // Auth-related API base URL
+ //const USER_API_URL = 'http://192.168.0.16:3000/api/users';  // User-related API base URL
+ 
+ const API_URL = 'http://localhost:3000/api/auth';  // Auth-related API base URL
+ const USER_API_URL = 'http://localhost:3000/api/users';  // User-related API base URL
+
+// To access from other HTL local network devices...
+// const API_URL = 'http://172.16.97.127:3000/api/auth';  // Auth-related API base URL
+// const USER_API_URL = 'http://172.16.97.127:3000/api/users';  // User-related API base URL
 
 
 // Login user

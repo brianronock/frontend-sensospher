@@ -14,12 +14,16 @@ How it integrates:
 ********************************************************************************************************/
 import { io } from 'socket.io-client'
 
+// const API_URL = 'http://192.168.0.16:3000' // Home Local network Devices
+// const API_URL = 'http://172.16.97.127:3000'; // HTL Wien West Network
+const API_URL = 'http://localhost:3000' // Default Backend Websocket URL
+
 let socket
 
 export const connectWebSocket = () => {
   if (!socket) {
-    socket = io('http://localhost:3000') // Backend WebSocket URL
-     console.log('WebSocket connected:', socket.id)
+    socket = io(API_URL)
+    console.log('WebSocket connected:', socket.id)
   }
   return socket
 }

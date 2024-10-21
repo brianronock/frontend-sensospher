@@ -24,10 +24,17 @@ import { saveToken, clearToken } from '../../utils/authHelper'
 // Async action for user login
 export const loginUser = createAsyncThunk('auth/loginUser', async (userData, thunkAPI) => {
   try {
+    // console.log("Button Clicked!")
+
     const response = await loginService(userData)  // Ensure loginService is called correctly
+    //console.log("Button Clicked!")
+
+    // console.log(response)
+
     saveToken(response.token)  // Save token to localStorage
     return response  // Return the response which includes user data
   } catch (error) {
+    // console.log(error)
     return thunkAPI.rejectWithValue(error.response.data)
   }
 })

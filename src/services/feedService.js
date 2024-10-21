@@ -2,10 +2,13 @@
     src/services/feedService.js
 /********************************************************************************************************
 Purpose:
-The `feedService.js` handles API requests for the live feed (e.g., fetching, creating, updating, deleting posts, and liking posts). It provides the functions that allow your frontend to interact with the backend.
+The `feedService.js` handles API requests for the live feed 
+(e.g., fetching, creating, updating, deleting posts, and liking posts). 
+It provides the functions that allow your frontend to interact with the backend.
 
 #Key Functions:
-- `fetchPostsService()`: Sends a GET request to fetch all posts from the live feed. The `Authorization` header is included for authentication.
+- `fetchPostsService()`: Sends a GET request to fetch all posts from the live feed. 
+                          The `Authorization` header is included for authentication.
 - `createPostService(postData)`: Sends a POST request to create a new post. The post data (content) is passed in the body.
 - `deletePostService(postId)`: Sends a DELETE request to remove a post by its ID.
 - `updatePostService(postId, updatedContent)`: Sends a PUT request to update an existing post's content.
@@ -16,8 +19,11 @@ How it integrates:
 ********************************************************************************************************/
 import axios from 'axios'
 
-// const API_URL = 'http://192.168.0.16:3000/api/feed'
-const API_URL = 'http://localhost:3000/api/feed'
+// const API_URL = 'http://192.168.0.16:3000/api/feed' // Home Local network Devices
+// const API_URL = 'http://172.16.97.127:3000/api/feed'; // HTL Wien West Network
+const API_URL = 'http://localhost:3000/api/addFeed' // Beta version
+
+// const API_URL = 'http://localhost:3000/api/feed'
 
 // Helper function to get the Authorization headers
 const getAuthHeaders = () => {

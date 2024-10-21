@@ -33,7 +33,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      console.log("Button Clicked!")
+
       await dispatch(loginUser({ email, password })).unwrap()
+      console.log("Button Clicked again!")
       setErrorMessage('')
       navigate('/feed')
     } catch (error) {

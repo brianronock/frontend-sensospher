@@ -33,13 +33,15 @@ import LiveFeed from './components/LiveFeed'
 import ProtectedRoute from './routes/ProtectedRoute'
 import PublicRoute from './routes/PublicRoute'
 import NotFound from './pages/NotFound'
-import Navbar from './components/Navbar' 
+// import Navbar from './components/Navbar' 
 import Sensors from './pages/Sensors' 
 import Footer from './components/Footer'
 import './App.css'
 import io from 'socket.io-client'
 import PostProvider from './hooks/context/PostContext'
 import { Header } from './components/Header'
+import NewLiveFeed from './pages/NewLiveFeed'
+import NewProfile from './pages/NewProfile'
 
 
 
@@ -75,7 +77,9 @@ const App = () => {
               <Route path="/register" element={ <PublicRoute><Register /></PublicRoute> }/>
               <Route path="/dashboard" element={ <ProtectedRoute><Dashboard socket={socket} /></ProtectedRoute> }/>
               <Route path="/profile" element={ <ProtectedRoute><Profile /></ProtectedRoute> }/>
+              <Route path="/newProfile" element={ <ProtectedRoute><NewProfile /></ProtectedRoute> }/>
               <Route path="/feed" element={ <ProtectedRoute><LiveFeed socket={socket} /> </ProtectedRoute> }/>
+              <Route path="/addFeed" element={ <ProtectedRoute><NewLiveFeed socket={socket} /> </ProtectedRoute> }/>
               <Route path="/sensors" element={ <ProtectedRoute><Sensors socket={socket} /></ProtectedRoute> }/> 
               <Route path="*" element={<NotFound />} />
             </Routes>        
